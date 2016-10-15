@@ -8,7 +8,7 @@ export default class HomePage extends Component {
     super()
 
     this.state = {
-      results: RoadTripStore.getTripRoute()
+      // results: RoadTripStore.getTripRoute()
     }
     this._onChange = this._onChange.bind(this)
   }
@@ -31,9 +31,8 @@ export default class HomePage extends Component {
     return (
       <div className="container">
         <div className="row">
-
           <GMap google={window.google} />
-          {/* <Container /> */}
+
 
         </div>
         <div className="row">

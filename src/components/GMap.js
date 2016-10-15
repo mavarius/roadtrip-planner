@@ -3,6 +3,10 @@ import React, { Component } from 'react'
 var GoogleMapsLoader = require('google-maps')
 
 export default class GMap extends Component {
+  constructor() {
+    super()
+
+  }
   componentDidMount () {
     this.initMap()
   }
@@ -15,6 +19,7 @@ export default class GMap extends Component {
 
   initMap () {
       const { mapRef } = this.refs
+      // const {start, end} = this.state;
 
       // GoogleMapsLoader.load( (google) => {
         var directionsService = new google.maps.DirectionsService()
@@ -27,8 +32,8 @@ export default class GMap extends Component {
 
         directionsDisplay.setMap(map)
 
-        var start = 'San Francisco CA'
-        var end = 'Stone Mountain GA'
+        let start='', end='';
+
         var request = {
           origin: start,
           destination: end,
@@ -44,7 +49,7 @@ export default class GMap extends Component {
   }
 
   render () {
-    console.log('window.GoogleMapsLoader: ', window.GoogleMapsLoader)
+
     return (
       <div ref="mapRef" className="mapRef"></div>
     )
