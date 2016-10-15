@@ -1,6 +1,6 @@
 // PORT
-const PORT = process.env.PORT || 8000;
-const MONGO_URI = process.env.MONGOLAB_URI || 'mongodb://localhost/roadtrip_plannerDB'
+const PORT = process.env.PORT || 8000
+// const MONGO_URI = process.env.MONGOLAB_URI || 'mongodb://localhost/roadtrip_plannerDB'
 
 // REQUIRES
 const express = require('express')
@@ -14,10 +14,10 @@ const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
 const webpackConfig = require('../webpack.config')
 
-require('mongoose').connect(MONGO_URI, err =>{
-  if (err) throw err;
-  console.log(`MongoDB connected to ${MONGO_URI}`)
-})
+// require('mongoose').connect(MONGO_URI, err =>{
+//   if (err) throw err
+//   console.log(`MongoDB connected to ${MONGO_URI}`)
+// })
 
 // APP DECLARATION
 const app = express()
@@ -29,9 +29,9 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }))
 app.use(express.static('src'))
 app.use(cors())
 app.use((req, res, next) => {
-  res.handle = (err, data) => res.status(err ? 400: 200).send(err || data);
-  next();
-});
+  res.handle = (err, data) => res.status(err ? 400 : 200).send(err || data)
+  next()
+})
 
 // WEBPACK CONFIGURATION
 const compiler = webpack(webpackConfig)
@@ -39,11 +39,10 @@ app.use(webpackDevMiddleware(compiler, { publicPath: webpackConfig.output.public
 app.use(webpackHotMiddleware(compiler))
 
 // ROUTES
-app.use('/api', require('./routes/api'));
+app.use('/api', require('./routes/api'))
 app.use('*', function (req, res) {
   res.sendFile(path.join(__dirname, '../src/index.html'))
-});
-
+})
 
 // SERVER LISTEN
 app.listen(PORT, err => {
