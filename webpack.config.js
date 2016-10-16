@@ -19,8 +19,10 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({
-        'process.env.GOOGLE_API_KEY': JSON.stringify(process.env.GOOGLE_API_KEY)
-    })
+     'process.env': {
+       GOOGLE_API_KEY: JSON.stringify(process.env.GOOGLE_API_KEY)
+     }
+   })
   ],
   module: {
     loaders: [
