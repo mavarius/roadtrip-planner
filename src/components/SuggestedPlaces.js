@@ -10,7 +10,7 @@ export default class SuggestedPlaces extends Component {
       <div className="allPlaces">
           {places.map(place => {
             let {name, rating, photos} = place
-            return <div key={uuid()}>{photos ? <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photos[0].photo_reference}&key=AIzaSyA8zSyYRs58X40NLs53PJjfcQseSWO1wjQ`} /> : null}<h3>{name}</h3><p>{rating}</p></div>
+            return <div key={uuid()}>{photos ? <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photos[0].photo_reference}&key=123`} /> : null}<h3>{name}</h3><p>{rating}</p></div>
           })}
       </div>
     )
