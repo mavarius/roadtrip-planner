@@ -11,6 +11,8 @@ let _tripRoute = {
 
 let _searchResult
 
+let _placeResults = []
+
 class RoadTripStore extends EventEmitter {
   constructor () {
     super()
@@ -18,11 +20,22 @@ class RoadTripStore extends EventEmitter {
     AppDispatcher.register(action => {
       switch (action.type) {
         case 'RECEIVE_SEARCH_RESULTS':
+          _placeResults = []
           _searchResult = action.payload
           this.emit('CHANGE')
           break
         case 'RECEIVE_ROUTE_PLAN':
           _tripRoute = action.payload
+          this.emit('CHANGE')
+          break
+        case 'RECEIVE_PLACE_RESULTS':
+          action.payload.forEach(arr => {
+            arr.forEach(obj => {
+              if (!(_placeResults.find(e => e.id === obj.id))) {
+                _placeResults.push(obj)
+              }
+            })
+          })
           this.emit('CHANGE')
           break
       }
@@ -43,6 +56,10 @@ class RoadTripStore extends EventEmitter {
 
   getSearchResult () {
     return _searchResult
+  }
+
+  getPlaces () {
+    return _placeResults
   }
 }
 

@@ -31,8 +31,8 @@ export default class GMap extends Component {
 
     directionsService.route(request, function (result, status) {
       if (status === 'OK') {
-        directionsDisplay.setDirections(result);
-        console.log('result:', result)
+        directionsDisplay.setDirections(result)
+        // console.log('result:', result)
       }
     })
   // })

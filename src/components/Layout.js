@@ -7,7 +7,7 @@ export default class Layout extends Component {
       <div className="container">
         <div className="row">
           <h1>Be Trippin</h1>
-          <Link to="/" onlyActiveOnIndex>Home</Link>
+          {/* <Link to="/" onlyActiveOnIndex>Home</Link> */}
         </div>
         {this.props.children}
       </div>

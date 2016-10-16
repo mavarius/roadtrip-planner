@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SearchBar from './SearchBar'
 import GMap from './GMap'
 import RoadTripStore from '../stores/RoadTripStore'
+import SuggestedPlaces from './SuggestedPlaces'
 
 export default class HomePage extends Component {
   constructor () {
@@ -9,7 +10,8 @@ export default class HomePage extends Component {
 
     this.state = {
       routePlan: RoadTripStore.getRoutePlan(),
-      searchResult: RoadTripStore.getSearchResult()
+      searchResult: RoadTripStore.getSearchResult(),
+      places: RoadTripStore.getPlaces()
     }
     this._onChange = this._onChange.bind(this)
   }
@@ -25,14 +27,13 @@ export default class HomePage extends Component {
   _onChange () {
     this.setState({
       routePlan: RoadTripStore.getRoutePlan(),
-      searchResult: RoadTripStore.getSearchResult()
+      searchResult: RoadTripStore.getSearchResult(),
+      places: RoadTripStore.getPlaces()
     })
   }
 
   render () {
-    console.log('this.state.searchResult:', this.state.searchResult)
-    let { searchResult } = this.state;
-    
+    const { places } = this.state
     return (
       <div className="container">
         <div className="row">
@@ -40,6 +41,9 @@ export default class HomePage extends Component {
         </div>
         <div className="row">
           <SearchBar />
+        </div>
+        <div className>
+          <SuggestedPlaces {...this.state} />
         </div>
       </div>
     )

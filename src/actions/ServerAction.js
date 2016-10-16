@@ -6,6 +6,13 @@ const ServerAction = {
       type: 'RECEIVE_SEARCH_RESULTS',
       payload: data
     })
+  },
+  
+  receivePlaceResults (data) {
+    AppDispatcher.dispatch({
+      type: 'RECEIVE_PLACE_RESULTS',
+      payload: data
+    })
   }
 }
 
