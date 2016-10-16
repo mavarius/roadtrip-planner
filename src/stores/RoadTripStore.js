@@ -13,6 +13,8 @@ let _searchResult
 
 let _placeResults = []
 
+let _markerArr = []
+
 class RoadTripStore extends EventEmitter {
   constructor () {
     super()
@@ -38,6 +40,10 @@ class RoadTripStore extends EventEmitter {
           })
           this.emit('CHANGE')
           break
+        case 'ADD_MARKER':
+          _markerArr.push(action.payload);
+          this.emit('CHANGE')
+          break
       }
     })
   }
@@ -60,6 +66,10 @@ class RoadTripStore extends EventEmitter {
 
   getPlaces () {
     return _placeResults
+  }
+
+  getMarkers () {
+    return _markerArr
   }
 }
 

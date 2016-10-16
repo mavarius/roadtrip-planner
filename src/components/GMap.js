@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 // var GoogleMapsLoader = require('google-maps')
 
 export default class GMap extends Component {
+
   componentDidMount () {
     this.initMap()
   }
@@ -25,6 +26,35 @@ export default class GMap extends Component {
       center: {lat: 41.85, lng: -97.65}
     })
 
+    var { markers} = this.props
+
+
+    console.log('markers:', markers)
+
+    markers.forEach(markerPoint => {
+      let locationObj = markerPoint.geometry.location
+      let { lat, lng } = locationObj
+      var marker = new google.maps.Marker({
+        position: {lat, lng},
+        map: map
+      })
+
+    var contentString = `<div><h5>${markerPoint.name}</h5><button class="btn btn-danger" onClick={(markerPoint)=>this.addFavorite(markerPoint)}><i class="glyphicon glyphicon-heart"></i>
+</button></div>`;
+
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
+
+
+    })
+
+
+
     directionsDisplay.setMap(map)
 
     var request = this.props.routePlan
@@ -36,6 +66,10 @@ export default class GMap extends Component {
       }
     })
   // })
+  }
+
+  addFavorite(markerPoint) {
+    console.log('here')
   }
 
   render () {

@@ -11,7 +11,8 @@ export default class HomePage extends Component {
     this.state = {
       routePlan: RoadTripStore.getRoutePlan(),
       searchResult: RoadTripStore.getSearchResult(),
-      places: RoadTripStore.getPlaces()
+      places: RoadTripStore.getPlaces(),
+      markers: RoadTripStore.getMarkers()
     }
     this._onChange = this._onChange.bind(this)
   }
@@ -28,7 +29,8 @@ export default class HomePage extends Component {
     this.setState({
       routePlan: RoadTripStore.getRoutePlan(),
       searchResult: RoadTripStore.getSearchResult(),
-      places: RoadTripStore.getPlaces()
+      places: RoadTripStore.getPlaces(),
+      markers: RoadTripStore.getMarkers()
     })
   }
 

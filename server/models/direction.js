@@ -10,7 +10,7 @@ exports.getInitialRoute = (query, cb) => {
 
 exports.getPlaces = (query, cb) => {
   let {location, type, keyword} = query
-  axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=20000&type=${type}&keyword=${keyword}&key=${process.env.GOOGLE_API_KEY}`)
+  axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=10000&type=${type}&keyword=${keyword}&key=${process.env.GOOGLE_API_KEY}`)
     .then(res => cb(null, res.data))
     .catch(console.error)
 }

@@ -12,9 +12,13 @@ const RoadTripAction = {
       payload: routePlan
     })
   },
-  getType (tripType) {
-    API.getType(tripType)
+  addMarker (place) {
+    AppDispatcher.dispatch({
+      type: 'ADD_MARKER',
+      payload: place
+    })
   }
+
 }
 
 export default RoadTripAction
