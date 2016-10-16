@@ -8,14 +8,16 @@ export default class SearchBar extends Component {
     this.state = {
       fieldCount: 0
     }
+    this.pickType = this.pickType.bind(this);
   }
 
   handleSearch (e) {
     e.preventDefault()
     let { fieldCount } = this.state
-    let { originInput, destinationInput } = this.refs
+    let { originInput, destinationInput, type } = this.refs
     let origin = originInput.value
     let destination = destinationInput.value
+    let tripType = type.value;
 
     let waypoints = []
     let waypointQuery = ''
@@ -45,9 +47,8 @@ export default class SearchBar extends Component {
       travelMode: 'DRIVING'
     }
 
-
     RoadTripAction.findRoute(routePlan)
-    RoadTripAction.search(query)
+    RoadTripAction.search(query, tripType)
   }
 
   addWaypointInput () {
@@ -56,6 +57,12 @@ export default class SearchBar extends Component {
       fieldCount++
       this.setState({fieldCount})
     }
+  }
+
+  pickType(event) {
+    let type = event.target.value;
+    this.setState({type})
+    // RoadTripAction.getPlaces(type);
   }
 
   render () {
@@ -78,7 +85,16 @@ export default class SearchBar extends Component {
           <input type="text" className="searchBar" ref="destinationInput" placeholder="enter destination" required />
           <button className="btn btn-primary searchBtn" onClick={() => this.addWaypointInput()} type="button">add waypoint</button>
           <button className="btn btn-primary searchBtn">Start Trippin!</button>
+          <p>Choose your trip type</p>
+          <select ref="type" defaultValue="park">
+             <option value="park">National Park Experience</option>
+             <option value="restaurant">Culinary Adventure</option>
+             <option value="amusement_park">Amusement Park Spree</option>
+           </select>
+
+
         </form>
+
       </div>
     )
   }

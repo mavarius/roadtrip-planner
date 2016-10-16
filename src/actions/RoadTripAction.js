@@ -2,8 +2,8 @@ import API from '../API'
 import AppDispatcher from '../AppDispatcher'
 
 const RoadTripAction = {
-  search (searchInfo) {
-    API.search(searchInfo)
+  search (searchInfo, tripType) {
+    API.search(searchInfo, tripType)
   },
 
   findRoute (routePlan) {
@@ -11,6 +11,9 @@ const RoadTripAction = {
       type: 'RECEIVE_ROUTE_PLAN',
       payload: routePlan
     })
+  },
+  getType (tripType) {
+    API.getType(tripType)
   }
 }
 
