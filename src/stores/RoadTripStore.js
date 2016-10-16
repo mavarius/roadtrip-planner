@@ -1,7 +1,13 @@
 import { EventEmitter } from 'events'
 import AppDispatcher from '../AppDispatcher'
 
-let _tripRoute = {}
+let _tripRoute = {
+  origin: '',
+  destination: '',
+  waypoints: [],
+  optimizeWaypoints: true,
+  travelMode: 'DRIVING'
+}
 
 class RoadTripStore extends EventEmitter {
   constructor () {
@@ -10,6 +16,9 @@ class RoadTripStore extends EventEmitter {
     AppDispatcher.register(action => {
       switch (action.type) {
         case 'RECEIVE_SEARCH_RESULTS':
+          this.emit('CHANGE')
+          break
+        case 'RECEIVE_ROUTE_PLAN':
           _tripRoute = action.payload
           this.emit('CHANGE')
           break
@@ -25,7 +34,7 @@ class RoadTripStore extends EventEmitter {
     this.removeListener('CHANGE', cb)
   }
 
-  getTripRoute () {
+  getRoutePlan () {
     return _tripRoute
   }
 }
