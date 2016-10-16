@@ -2,8 +2,8 @@ const axios = require('axios')
 require('dotenv').config()
 
 exports.getInitialRoute = (query, cb) => {
-  let {origin, destination} = query
-  axios.get(`https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${process.env.GOOGLE_API_KEY}`)
+  let {origin, destination, waypoints} = query
+  axios.get(`https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&waypoints=${waypoints}&key=${process.env.GOOGLE_API_KEY}`)
     .then(res => cb(null, res.data))
     .catch(console.error)
 }

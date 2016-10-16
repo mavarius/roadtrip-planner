@@ -9,6 +9,8 @@ let _tripRoute = {
   travelMode: 'DRIVING'
 }
 
+let _searchResult
+
 class RoadTripStore extends EventEmitter {
   constructor () {
     super()
@@ -16,6 +18,7 @@ class RoadTripStore extends EventEmitter {
     AppDispatcher.register(action => {
       switch (action.type) {
         case 'RECEIVE_SEARCH_RESULTS':
+          _searchResult = action.payload
           this.emit('CHANGE')
           break
         case 'RECEIVE_ROUTE_PLAN':
@@ -36,6 +39,10 @@ class RoadTripStore extends EventEmitter {
 
   getRoutePlan () {
     return _tripRoute
+  }
+
+  getSearchResult () {
+    return _searchResult
   }
 }
 

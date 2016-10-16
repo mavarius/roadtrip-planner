@@ -8,7 +8,8 @@ export default class HomePage extends Component {
     super()
 
     this.state = {
-      routePlan: RoadTripStore.getRoutePlan()
+      routePlan: RoadTripStore.getRoutePlan(),
+      searchResult: RoadTripStore.getSearchResult()
     }
     this._onChange = this._onChange.bind(this)
   }
@@ -23,11 +24,15 @@ export default class HomePage extends Component {
 
   _onChange () {
     this.setState({
-      routePlan: RoadTripStore.getRoutePlan()
+      routePlan: RoadTripStore.getRoutePlan(),
+      searchResult: RoadTripStore.getSearchResult()
     })
   }
 
   render () {
+    console.log('this.state.searchResult:', this.state.searchResult)
+    let { searchResult } = this.state;
+    
     return (
       <div className="container">
         <div className="row">

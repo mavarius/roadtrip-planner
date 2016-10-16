@@ -14,25 +14,40 @@ export default class SearchBar extends Component {
     e.preventDefault()
     let { fieldCount } = this.state
     let { originInput, destinationInput } = this.refs
+    let origin = originInput.value
+    let destination = destinationInput.value
 
     let waypoints = []
+    let waypointQuery = ''
     for (let i = 0; i < fieldCount; i++) {
+      if (!waypointQuery) {
+        waypointQuery = '&waypoints='
+      }
+      let waypointLocation = eval(`this.refs.waypoint${i}.value`)
       let waypoint = {
-        location: eval(`this.refs.waypoint${i}.value`),
+        location: waypointLocation,
         stopover: true
       }
       waypoints.push(waypoint)
-    }
+      if(i === fieldCount-1) {
+        waypointQuery += waypointLocation
+      } else {
+        waypointQuery += waypointLocation + '|'
+      }
 
+    }
+    let query = `origin=${origin}&destination=${destination}${waypointQuery}`
     let routePlan = {
-      origin: originInput.value,
-      destination: destinationInput.value,
+      origin: origin,
+      destination: destination,
       waypoints: waypoints,
       optimizeWaypoints: true,
       travelMode: 'DRIVING'
     }
 
+
     RoadTripAction.findRoute(routePlan)
+    RoadTripAction.search(query)
   }
 
   addWaypointInput () {

@@ -2,8 +2,8 @@ import API from '../API'
 import AppDispatcher from '../AppDispatcher'
 
 const RoadTripAction = {
-  search (query) {
-    API.search(query)
+  search (searchInfo) {
+    API.search(searchInfo)
   },
 
   findRoute (routePlan) {
