@@ -8,7 +8,7 @@ export default class SearchBar extends Component {
     this.state = {
       fieldCount: 0
     }
-    this.pickType = this.pickType.bind(this);
+    this.pickType = this.pickType.bind(this)
   }
 
   handleSearch (e) {
@@ -17,7 +17,7 @@ export default class SearchBar extends Component {
     let { originInput, destinationInput, type } = this.refs
     let origin = originInput.value
     let destination = destinationInput.value
-    let tripType = type.value;
+    let tripType = type.value
 
     let waypoints = []
     let waypointQuery = ''
@@ -31,12 +31,11 @@ export default class SearchBar extends Component {
         stopover: true
       }
       waypoints.push(waypoint)
-      if(i === fieldCount-1) {
+      if (i === fieldCount - 1) {
         waypointQuery += waypointLocation
       } else {
         waypointQuery += waypointLocation + '|'
       }
-
     }
     let query = `origin=${origin}&destination=${destination}${waypointQuery}`
     let routePlan = {
@@ -59,8 +58,16 @@ export default class SearchBar extends Component {
     }
   }
 
-  pickType(event) {
-    let type = event.target.value;
+  removeWaypointInput () {
+    let { fieldCount } = this.state
+    if (fieldCount > 0) {
+      fieldCount--
+      this.setState({fieldCount})
+    }
+  }
+
+  pickType (event) {
+    let type = event.target.value
     this.setState({type})
     // RoadTripAction.getPlaces(type);
   }
@@ -77,24 +84,24 @@ export default class SearchBar extends Component {
 
     return (
       <div className="searchBlock col-sm-12">
+        <h3>Choose your trip type:</h3>
+        <select className="btn searchBtn dropdown-toggle" ref="type" defaultValue="park">
+          <option value="park">National Park Experience</option>
+          <option value="restaurant">Culinary Adventure</option>
+          <option value="amusement_park">Amusement Park Spree</option>
+        </select>
         <form onSubmit={(e) => this.handleSearch(e)}>
           <input type="text" className="searchBar" ref="originInput" placeholder="enter origin" required />
           {waypointInputFields.map(field => {
             return field
           })}
           <input type="text" className="searchBar" ref="destinationInput" placeholder="enter destination" required />
-          <button className="btn btn-primary searchBtn" onClick={() => this.addWaypointInput()} type="button">add waypoint</button>
-          <button className="btn btn-primary searchBtn">Start Trippin!</button>
-          <p>Choose your trip type</p>
-          <select ref="type" defaultValue="park">
-             <option value="park">National Park Experience</option>
-             <option value="restaurant">Culinary Adventure</option>
-             <option value="amusement_park">Amusement Park Spree</option>
-           </select>
-
-
+          <div>
+            <button className="btn btn-primary searchBtn" onClick={() => this.addWaypointInput()} type="button"><i className="glyphicon glyphicon-plus" /></button>
+            <button className="btn btn-primary searchBtn" onClick={() => this.removeWaypointInput()} type="button"><i className="glyphicon glyphicon-minus" /></button>
+            <button className="btn btn-primary searchBtn">Start Trippin!</button>
+          </div>
         </form>
-
       </div>
     )
   }

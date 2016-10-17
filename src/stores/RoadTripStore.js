@@ -15,6 +15,8 @@ let _placeResults = []
 
 let _markerArr = []
 
+let _fieldCount = 0
+
 class RoadTripStore extends EventEmitter {
   constructor () {
     super()
@@ -36,10 +38,15 @@ class RoadTripStore extends EventEmitter {
               _placeResults.push(obj)
             }
           })
+          _placeResults.sort((a, b) => b.rating - a.rating)
           this.emit('CHANGE')
           break
         case 'ADD_MARKER':
           _markerArr.push(action.payload)
+          this.emit('CHANGE')
+          break
+        case 'ADD_WAYPOINT':
+          _fieldCount++
           this.emit('CHANGE')
           break
       }

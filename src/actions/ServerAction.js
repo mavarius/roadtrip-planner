@@ -7,7 +7,7 @@ const ServerAction = {
       payload: data
     })
   },
-  
+
   receivePlaceResults (data) {
     AppDispatcher.dispatch({
       type: 'RECEIVE_PLACE_RESULTS',
