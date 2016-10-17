@@ -2,6 +2,8 @@ import axios from 'axios'
 import ServerAction from './actions/ServerAction'
 
 let tempArr = []
+let searchCounter = 0
+let counter = 0
 
 const API = {
   search (query, tripType) {
@@ -9,7 +11,13 @@ const API = {
       .then(response => {
         let data = response.data
         ServerAction.receiveSearchResults(data)
-        let latLon = data.routes[0].legs[0].steps
+        let latLon = []
+        data.routes[0].legs.forEach(leg => {
+          leg.steps.forEach(step => {
+            latLon.push(step)
+          })
+        })
+
         let passPackage = {
           latLon,
           tripType
@@ -18,12 +26,11 @@ const API = {
       })
       .then(passPackage => {
         let {latLon, tripType} = passPackage
-        let counter = 0
         latLon.map(pinPoint => {
-          if (pinPoint.distance.value > 6000) {
+          if (pinPoint.distance.value > 50000) {
             counter++
           }
-          if (pinPoint.distance.value > 6000) {
+          if (pinPoint.distance.value > 50000) {
             let { lat, lng } = pinPoint.end_location
             let queryFromLatLon = `location=${lat},${lng}`
             let query = ''
@@ -38,19 +45,22 @@ const API = {
                 query = `${queryFromLatLon}&type=amusement_park&keyword=amusement+park`
                 break
             }
-            API.getPlaces(query, counter)
+            API.getPlaces(query)
           }
         })
       })
       .catch(console.error)
   },
-  getPlaces (query, counter) {
+  getPlaces (query) {
     axios.get(`/api/googleApi/places?${query}`)
       .then(res => {
-        tempArr.push(res.data.results)
-        if (tempArr.length === counter) {
+        res.data.results.forEach(result => tempArr.push(result))
+        ++searchCounter
+        if (searchCounter === counter) {
           ServerAction.receivePlaceResults(tempArr)
           tempArr = []
+          searchCounter = 0
+          counter = 0
         }
       })
       .catch(console.error)

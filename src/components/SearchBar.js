@@ -76,7 +76,7 @@ export default class SearchBar extends Component {
     }
 
     return (
-      <div className="searchBlock">
+      <div className="searchBlock col-sm-12">
         <form onSubmit={(e) => this.handleSearch(e)}>
           <input type="text" className="searchBar" ref="originInput" placeholder="enter origin" required />
           {waypointInputFields.map(field => {

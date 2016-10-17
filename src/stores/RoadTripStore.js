@@ -31,17 +31,15 @@ class RoadTripStore extends EventEmitter {
           this.emit('CHANGE')
           break
         case 'RECEIVE_PLACE_RESULTS':
-          action.payload.forEach(arr => {
-            arr.forEach(obj => {
-              if (!(_placeResults.find(e => e.id === obj.id))) {
-                _placeResults.push(obj)
-              }
-            })
+          action.payload.forEach(obj => {
+            if (!(_placeResults.find(e => e.id === obj.id))) {
+              _placeResults.push(obj)
+            }
           })
           this.emit('CHANGE')
           break
         case 'ADD_MARKER':
-          _markerArr.push(action.payload);
+          _markerArr.push(action.payload)
           this.emit('CHANGE')
           break
       }

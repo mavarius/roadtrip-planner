@@ -8,7 +8,7 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const path = require('path')
 const cors = require('cors')
-
+require('dotenv').load()
 const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')

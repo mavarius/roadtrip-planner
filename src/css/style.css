@@ -1,5 +1,72 @@
 .mapRef {
   margin: 0 auto;
-  width: 80vw;
-  height: 60vh;
+  width: 100%;
+  height: 50vh;
+}
+
+.backgroundImage {
+  position: fixed;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  background-size: cover;
+  background-position: center;
+  /*filter: blur(5px);*/
+}
+
+.container {
+  position: relative;
+  z-index: 50;
+}
+
+.appTitle {
+  text-align: left;
+  font-size: 1.6em;
+  color: white;
+  text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.6);;
+}
+
+.placeCard {
+  background-color: white;
+  height: 450px;
+  box-sizing: border-box;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.6);
+  margin-bottom: 30px;
+}
+
+.cardDetails {
+  padding: 10px;
+}
+
+.placeCard > img {
+  object-fit: cover;
+  height: 160px;
+  width: 100%;
+  background-image: url('../images/placeholder.png');
+}
+
+.placeCard > h4 {
+  padding-bottom: 5px;
+  margin: 10px auto;
+  width: 100%;
+  border-bottom: 1px solid lightgrey;
+}
+
+i {
+  margin-right: 15px;
+  font-size: 0.8em
+}
+
+.mapRef {
+  box-sizing: border-box;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.btn {
+  border-radius: 0;
+  margin-right: 10px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
 }
