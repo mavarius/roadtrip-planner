@@ -28,9 +28,6 @@ export default class GMap extends Component {
 
     var { markers} = this.props
 
-
-    console.log('markers:', markers)
-
     markers.forEach(markerPoint => {
       let locationObj = markerPoint.geometry.location
       let { lat, lng } = locationObj
