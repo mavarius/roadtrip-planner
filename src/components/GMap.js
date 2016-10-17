@@ -26,11 +26,7 @@ export default class GMap extends Component {
       center: {lat: 41.85, lng: -97.65}
     })
 
-<<<<<<< HEAD
-    var { markers} = this.props
-=======
     var { markers } = this.props
->>>>>>> 93be88fa0a111ff5882355afd8433f2dd34d59c1
 
     markers.forEach(markerPoint => {
       let locationObj = markerPoint.geometry.location
@@ -49,7 +45,6 @@ export default class GMap extends Component {
       marker.addListener('click', function () {
         infowindow.open(map, marker)
       })
-
     })
 
     directionsDisplay.setMap(map)
@@ -67,7 +62,7 @@ export default class GMap extends Component {
   render () {
     return (
       <div className="col-sm-12">
-      <div ref="mapRef" className="mapRef"></div>
+        <div ref="mapRef" className="mapRef"></div>
       </div>
     )
   }
