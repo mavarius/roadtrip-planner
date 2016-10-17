@@ -36,6 +36,8 @@ class RoadTripStore extends EventEmitter {
               _placeResults.push(obj)
             }
           })
+          _placeResults.sort((a,b) => b.rating - a.rating)
+          console.log('_placeResults: ', _placeResults)
           this.emit('CHANGE')
           break
         case 'ADD_MARKER':

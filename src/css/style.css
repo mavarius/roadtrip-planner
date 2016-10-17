@@ -26,7 +26,7 @@
   text-align: left;
   font-size: 1.6em;
   color: white;
-  text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.6);;
+  text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 .placeCard {
@@ -41,11 +41,27 @@
   padding: 10px;
 }
 
+.ratingStars {
+  overflow: hidden;
+  position: relative;
+  display: block;
+  height: 100%;
+}
+
+.ratingStars img {
+  width: 150px;
+  object-fit: cover;
+}
+
+.placeCardImg {
+  height: 160px;
+  width: 100%;
+}
+
 .placeCard > img {
   object-fit: cover;
   height: 160px;
   width: 100%;
-  background-image: url('../images/placeholder.png');
 }
 
 .placeCard > h4 {
@@ -67,6 +83,91 @@ i {
 
 .btn {
   border-radius: 0;
-  margin-right: 10px;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-toggle {
+  border-radius: 0;
+  font-size: 1.2em;
+}
+
+select {
+  display: inline block;
+}
+
+.searchBlock h3 {
+  color: white;
+  text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.6);
+  display: inline-block;
+  margin-bottom: 40px;
+}
+
+.searchBlock {
+  text-align: center;
+  margin: 20px auto;
+}
+
+.searchBar {
+  position: relative;
+  width: 200px;
+  text-align: center;
+}
+
+.searchBtn {
+  position: relative;
+  display: inline-block;
+  background-color: black;
+  color: white;
+  margin: 10px;
+  height: 30px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.searchBtn:hover, .saveBtn:hover {
+  color: black;
+  background-color: white;
+  transition: all .5s;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {
+    outline: none;
+}
+
+*:focus {
+    outline: none;
+}
+
+input {
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.9);
+  position: relative;
+  margin: 10px;
+  border: none;
+  color: black;
+  width: 120px;
+  height: 30px;
+  font-size: 1.2em;
+  border-radius: 0;
+}
+
+::-webkit-input-placeholder {
+   color: grey;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: grey;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: grey;
+}
+
+:-ms-input-placeholder {
+   color: grey;
 }
