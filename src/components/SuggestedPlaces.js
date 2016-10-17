@@ -13,6 +13,10 @@ export default class SuggestedPlaces extends Component {
     RoadTripAction.addMarker(place)
   }
 
+  addWaypoint (place) {
+    RoadTripAction.addWaypoint(place)
+  }
+
   render () {
     const { places } = this.props
     let ratingSize
@@ -26,8 +30,8 @@ export default class SuggestedPlaces extends Component {
                 <div className="placeCard">
                 {photos ? <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photos[0].photo_reference}&key=${process.env.GOOGLE_API_KEY}`} /> : <img src="../images/placeholder.png" />}
                 <div className="cardDetails">
-                  <buttton className="btn btn-info col-xs-6" onClick={() => this.addMarker(place)}>Mark Map</buttton>
-                  <buttton className="btn btn-info col-xs-6" onClick={() => this.addWaypoint(place)}>Add Waypoint</buttton>
+                  <buttton className="btn cardBtn col-xs-12" onClick={() => this.addMarker(place)}>Mark Map</buttton>
+                  {/* <buttton className="btn cardBtn col-xs-6" onClick={() => this.addWaypoint(place)}>Add Waypoint</buttton> */}
                   <div className="info col-xs-12">
                     <h4>{name}</h4>
                     <p>{vicinity}</p>

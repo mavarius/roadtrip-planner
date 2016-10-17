@@ -58,6 +58,14 @@ export default class SearchBar extends Component {
     }
   }
 
+  removeWaypointInput () {
+    let { fieldCount } = this.state
+    if (fieldCount > 0) {
+      fieldCount--
+      this.setState({fieldCount})
+    }
+  }
+
   pickType (event) {
     let type = event.target.value
     this.setState({type})
@@ -76,6 +84,12 @@ export default class SearchBar extends Component {
 
     return (
       <div className="searchBlock col-sm-12">
+        <h3>Choose your trip type:</h3>
+        <select className="btn searchBtn dropdown-toggle" ref="type" defaultValue="park">
+          <option value="park">National Park Experience</option>
+          <option value="restaurant">Culinary Adventure</option>
+          <option value="amusement_park">Amusement Park Spree</option>
+        </select>
         <form onSubmit={(e) => this.handleSearch(e)}>
           <input type="text" className="searchBar" ref="originInput" placeholder="enter origin" required />
           {waypointInputFields.map(field => {
@@ -83,15 +97,10 @@ export default class SearchBar extends Component {
           })}
           <input type="text" className="searchBar" ref="destinationInput" placeholder="enter destination" required />
           <div>
-            <button className="btn btn-primary searchBtn" onClick={() => this.addWaypointInput()} type="button">add waypoint</button>
+            <button className="btn btn-primary searchBtn" onClick={() => this.addWaypointInput()} type="button"><i className="glyphicon glyphicon-plus" /></button>
+            <button className="btn btn-primary searchBtn" onClick={() => this.removeWaypointInput()} type="button"><i className="glyphicon glyphicon-minus" /></button>
             <button className="btn btn-primary searchBtn">Start Trippin!</button>
           </div>
-          <h3>Choose your trip type:</h3>
-          <select className="btn searchBtn dropdown-toggle" ref="type" defaultValue="park">
-            <option value="park">National Park Experience</option>
-            <option value="restaurant">Culinary Adventure</option>
-            <option value="amusement_park">Amusement Park Spree</option>
-          </select>
         </form>
       </div>
     )

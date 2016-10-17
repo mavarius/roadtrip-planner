@@ -17,8 +17,13 @@ const RoadTripAction = {
       type: 'ADD_MARKER',
       payload: place
     })
+  },
+  addWaypoint (place) {
+    AppDispatcher.dispatch({
+      type: 'ADD_WAYPOINT',
+      payload: place
+    })
   }
-
 }
 
 export default RoadTripAction
