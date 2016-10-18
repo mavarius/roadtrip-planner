@@ -36,7 +36,7 @@ export default class GMap extends Component {
         map: map
       })
 
-      var contentString = `'<div><h5>${markerPoint.name}</h5><p>info</p></div>`
+      var contentString = `<div><h5>${markerPoint.name}</h5><p>info</p></div>`
 
       var infowindow = new google.maps.InfoWindow({
         content: contentString
